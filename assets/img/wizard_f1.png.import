@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjplyc3egetl0"
-path="res://.godot/imported/yellow.png-efd92db3b71a250ff8ddf15099975817.ctex"
+uid="uid://xrklgq7m20qe"
+path="res://.godot/imported/wizard_f1.png-c9e2b2ad382c743e09ee16ba86816c02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/yellow.png"
-dest_files=["res://.godot/imported/yellow.png-efd92db3b71a250ff8ddf15099975817.ctex"]
+source_file="res://assets/img/wizard_f1.png"
+dest_files=["res://.godot/imported/wizard_f1.png-c9e2b2ad382c743e09ee16ba86816c02.ctex"]
 
 [params]
 

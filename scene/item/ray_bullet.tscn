@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dm5yl4iso1lvc"]
 
 [ext_resource type="Script" uid="uid://btwr5p4x3rt8t" path="res://script/item/ray_bullet.gd" id="1_l6d8u"]
-[ext_resource type="Texture2D" uid="uid://t7oa1x85ks1y" path="res://assets/red.png" id="2_2hdiv"]
-[ext_resource type="Texture2D" uid="uid://bjplyc3egetl0" path="res://assets/yellow.png" id="3_s6qev"]
+[ext_resource type="Texture2D" uid="uid://t7oa1x85ks1y" path="res://assets/img/red.png" id="2_2hdiv"]
+[ext_resource type="Texture2D" uid="uid://bjplyc3egetl0" path="res://assets/img/yellow.png" id="3_s6qev"]
 
 [node name="RayBullet" type="Node2D" unique_id=1589218416]
 script = ExtResource("1_l6d8u")
