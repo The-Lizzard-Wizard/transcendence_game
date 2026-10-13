@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="transcendence_game"
+run/main_scene="uid://qu7mul8g7y0l"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalEvent="*uid://dabpxqi0asdsl"
 
 [display]
 
