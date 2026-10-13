@@ -6,6 +6,7 @@
 
 [node name="RayBullet" type="Node2D" unique_id=1589218416]
 script = ExtResource("1_l6d8u")
+range = 500.0
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=2128252311]
 

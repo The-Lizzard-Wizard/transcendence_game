@@ -35,7 +35,8 @@ func _process(delta):
 		var shoot_ins : Node2D = shoot.instantiate()
 		shoot_ins.position = position
 		var ray: RayCast2D = shoot_ins.get_node("RayCast2D")
-		ray.target_position = ray.to_local(get_global_mouse_position())
+		var dir = (get_global_mouse_position() - ray.global_position).normalized()
+		ray.target_position = ray.to_local(ray.global_position + dir * shoot_ins.range)
 
 		get_tree().current_scene.add_child(shoot_ins)
 		
