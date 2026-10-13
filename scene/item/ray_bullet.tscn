@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dm5yl4iso1lvc"]
+
+[ext_resource type="Texture2D" uid="uid://dk3lsxd27bpdo" path="res://icon.svg" id="1_fnfep"]
+
+[node name="RayBullet" type="Node2D" unique_id=1589218416]
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=2128252311]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2002608547]
+texture = ExtResource("1_fnfep")
