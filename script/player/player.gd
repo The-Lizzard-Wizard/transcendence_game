@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var speed : float = 300
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,14 +13,22 @@ func _process(delta):
 	look_at(get_global_mouse_position())
 	#rotation = rotation
 	
+	if not Input.is_action_pressed("move"):
+		$CharacterBody2D/AnimatedSprite2D.play("idle")
 	if Input.is_action_pressed("up"):
 		vel.y -= 1
+		$CharacterBody2D/AnimatedSprite2D.play("walk")
 	if Input.is_action_pressed("down"):
 		vel.y += 1
+		$CharacterBody2D/AnimatedSprite2D.play("walk")
 	if Input.is_action_pressed("right"):
 		vel.x += 1
+		$CharacterBody2D/AnimatedSprite2D.play("walk")
 	if Input.is_action_pressed("left"):
 		vel.x -= 1
+		$CharacterBody2D/AnimatedSprite2D.play("walk")
+
+
 	if Input.is_action_just_pressed("shoot"):
 		print("shoot")
 		var shoot = load("res://scene/item/ray_bullet.tscn")
@@ -31,6 +41,6 @@ func _process(delta):
 		
 		
 	if vel.length() > 0:
-		vel = vel.normalized() * 400
+		vel = vel.normalized() * speed
 		
 	position += vel * delta
