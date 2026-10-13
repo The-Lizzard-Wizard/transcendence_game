@@ -22,9 +22,12 @@ func _process(delta):
 	if Input.is_action_just_pressed("shoot"):
 		print("shoot")
 		var shoot = load("res://scene/item/ray_bullet.tscn")
-		var shoot_ins = shoot.instantiate()
+		var shoot_ins : Node2D = shoot.instantiate()
 		shoot_ins.position = position
-		get_parent().add_child(shoot_ins)
+		var ray: RayCast2D = shoot_ins.get_node("RayCast2D")
+		ray.target_position = ray.to_local(get_global_mouse_position())
+
+		get_tree().current_scene.add_child(shoot_ins)
 		
 		
 	if vel.length() > 0:

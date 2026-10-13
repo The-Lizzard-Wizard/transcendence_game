@@ -1,10 +1,16 @@
 [gd_scene format=3 uid="uid://dm5yl4iso1lvc"]
 
-[ext_resource type="Texture2D" uid="uid://dk3lsxd27bpdo" path="res://icon.svg" id="1_fnfep"]
+[ext_resource type="Script" uid="uid://btwr5p4x3rt8t" path="res://script/item/ray_bullet.gd" id="1_l6d8u"]
+[ext_resource type="Texture2D" uid="uid://t7oa1x85ks1y" path="res://assets/red.png" id="2_2hdiv"]
+[ext_resource type="Texture2D" uid="uid://bjplyc3egetl0" path="res://assets/yellow.png" id="3_s6qev"]
 
 [node name="RayBullet" type="Node2D" unique_id=1589218416]
+script = ExtResource("1_l6d8u")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=2128252311]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2002608547]
-texture = ExtResource("1_fnfep")
+[node name="base" type="Sprite2D" parent="." unique_id=2002608547]
+texture = ExtResource("2_2hdiv")
+
+[node name="point" type="Sprite2D" parent="." unique_id=1590811071]
+texture = ExtResource("3_s6qev")
