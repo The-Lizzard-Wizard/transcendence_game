@@ -2,13 +2,65 @@
 
 [ext_resource type="Script" uid="uid://btwr5p4x3rt8t" path="res://script/item/ray_bullet.gd" id="1_l6d8u"]
 [ext_resource type="Texture2D" uid="uid://t7oa1x85ks1y" path="res://assets/img/red.png" id="2_2hdiv"]
+[ext_resource type="Texture2D" uid="uid://c872dkn8r64mb" path="res://assets/img/blue_particle.png" id="2_s6qev"]
 [ext_resource type="Texture2D" uid="uid://bjplyc3egetl0" path="res://assets/img/yellow.png" id="3_s6qev"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_l6d8u"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_7rkqk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.49058822, 0.8218695), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_vt8gq"]
+curve = SubResource("Curve_7rkqk")
+
+[sub_resource type="Curve" id="Curve_7vd8f"]
+_data = [Vector2(0, 0.12698412), 0.0, 0.0, 0, 0, Vector2(0.5047059, 0.5079365), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_cdwmt"]
+curve = SubResource("Curve_7vd8f")
+
+[sub_resource type="Curve" id="Curve_vt8gq"]
+_data = [Vector2(0, 0.035273314), 0.0, 0.0, 0, 0, Vector2(0.6, 0.4514991), 0.0, 0.0, 0, 0, Vector2(0.9988235, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_s6qev"]
+curve = SubResource("Curve_vt8gq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6skho"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(0.2, 0, 1)
+angular_velocity_min = -275.94
+angular_velocity_max = -178.08002
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_s6qev")
+alpha_curve = SubResource("CurveTexture_vt8gq")
+emission_curve = SubResource("CurveTexture_cdwmt")
 
 [node name="RayBullet" type="Node2D" unique_id=1589218416]
 script = ExtResource("1_l6d8u")
 range = 500.0
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=2128252311]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="RayCast2D" unique_id=638563250]
+material = SubResource("CanvasItemMaterial_l6d8u")
+scale = Vector2(5, 5)
+emitting = false
+amount = 500
+texture = ExtResource("2_s6qev")
+lifetime = 0.3
+one_shot = true
+speed_scale = 1.69
+explosiveness = 0.05
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_6skho")
 
 [node name="base" type="Sprite2D" parent="." unique_id=2002608547]
 texture = ExtResource("2_2hdiv")

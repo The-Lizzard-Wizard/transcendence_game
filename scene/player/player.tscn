@@ -44,3 +44,5 @@ shape = SubResource("CapsuleShape2D_6skho")
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_6skho")
 animation = &"idle"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1968293382]

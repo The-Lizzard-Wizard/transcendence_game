@@ -13,6 +13,15 @@ func _process(delta):
 	look_at(get_global_mouse_position())
 	#rotation = rotation
 	
+	var posA = position
+	var posB = get_global_mouse_position()
+	
+	var posC = Vector2.ZERO
+	posC.x = (posA.x + posB.x) / 2
+	posC.y = (posA.y + posB.y) / 2
+	
+	$Camera2D.global_position = posC
+	
 	if not Input.is_action_pressed("move"):
 		$CharacterBody2D/AnimatedSprite2D.play("idle")
 	if Input.is_action_pressed("up"):
@@ -37,6 +46,9 @@ func _process(delta):
 		var ray: RayCast2D = shoot_ins.get_node("RayCast2D")
 		var dir = (get_global_mouse_position() - ray.global_position).normalized()
 		ray.target_position = ray.to_local(ray.global_position + dir * shoot_ins.range)
+		
+		var part: GPUParticles2D = ray.get_node("GPUParticles2D")
+		part.look_at(get_global_mouse_position())
 
 		get_tree().current_scene.add_child(shoot_ins)
 		
