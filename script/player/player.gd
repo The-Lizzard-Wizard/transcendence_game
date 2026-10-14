@@ -2,6 +2,7 @@ extends Node2D
 
 @export var speed : float = 300
 @export var healt : int = 100
+@export var weapon : PackedScene
 
 @export var client_player : bool = true
 
@@ -12,10 +13,36 @@ func _ready() -> void:
 	if (client_player == false):
 		$Camera2D.enabled = false
 
-func client_proc(delta):
+func client_physic_proc(delta):
+	
 	var vel = Vector2.ZERO
 	look_at(get_global_mouse_position())
-	#rotation = rotation
+	
+	#======================================================================================
+	#MOVEMENT
+	#======================================================================================
+	if not Input.is_action_pressed("move"):
+		$AnimatedSprite2D.play("idle")
+	if Input.is_action_pressed("up"):
+		vel.y -= 1
+		$AnimatedSprite2D.play("walk")
+	if Input.is_action_pressed("down"):
+		vel.y += 1
+		$AnimatedSprite2D.play("walk")
+	if Input.is_action_pressed("right"):
+		vel.x += 1
+		$AnimatedSprite2D.play("walk")
+	if Input.is_action_pressed("left"):
+		vel.x -= 1
+		$AnimatedSprite2D.play("walk")
+	
+	if vel.length() > 0:
+		vel = vel.normalized() * speed
+		
+	position += vel * delta
+
+
+func client_proc(delta):
 	
 	#======================================================================================
 	#CAMERA
@@ -37,28 +64,11 @@ func client_proc(delta):
 		$Camera2D.global_position = posD
 	else:
 		$Camera2D.global_position = posC
-	
-	#======================================================================================
-	#CONTROL
-	#======================================================================================
-	#MOVEMENT
-	if not Input.is_action_pressed("move"):
-		$CharacterBody2D/AnimatedSprite2D.play("idle")
-	if Input.is_action_pressed("up"):
-		vel.y -= 1
-		$CharacterBody2D/AnimatedSprite2D.play("walk")
-	if Input.is_action_pressed("down"):
-		vel.y += 1
-		$CharacterBody2D/AnimatedSprite2D.play("walk")
-	if Input.is_action_pressed("right"):
-		vel.x += 1
-		$CharacterBody2D/AnimatedSprite2D.play("walk")
-	if Input.is_action_pressed("left"):
-		vel.x -= 1
-		$CharacterBody2D/AnimatedSprite2D.play("walk")
 
 
-	#SHOOT
+	#======================================================================================
+	#ACTION
+	#======================================================================================
 	if Input.is_action_just_pressed("shoot"):
 		print("shoot")
 		var shoot = load("res://scene/item/ray_bullet.tscn")
@@ -66,26 +76,21 @@ func client_proc(delta):
 		shoot_ins.position = position
 		var ray: RayCast2D = shoot_ins.get_node("RayCast2D")
 		var dir = (get_global_mouse_position() - ray.global_position).normalized()
-		ray.target_position = ray.to_local(ray.global_position + dir * shoot_ins.range)
+		ray.target_position = ray.to_local(ray.global_position + dir * shoot_ins.w_range)
 		
 		var part: GPUParticles2D = ray.get_node("GPUParticles2D")
 		part.look_at(get_global_mouse_position())
-		#part.position = posC
-		#var mat : ParticleProcessMaterial = part.process_material
-		#mat.emission_box_extents.z = shoot_ins.range
 
 		get_tree().current_scene.add_child(shoot_ins)
-		
-		
-	if vel.length() > 0:
-		vel = vel.normalized() * speed
-		
-	position += vel * delta
 	
 func not_client_proc(delta):
 	pass
+	
+func _physics_process(delta: float) -> void:
+	if client_player == true:
+		client_physic_proc(delta)
 
-func _process(delta):
+func _process(delta: float):
 	if client_player == true:
 		client_proc(delta)
 	else:

@@ -31,20 +31,21 @@ animations = [{
 radius = 17.5
 height = 37.0
 
-[node name="player" type="Node2D" unique_id=1765459457]
+[node name="player" type="CharacterBody2D" unique_id=275882780]
 scale = Vector2(2, 2)
+disable_mode = 2
 script = ExtResource("1_cm2cf")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=275882780]
-disable_mode = 2
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=607882729]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=607882729]
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_6skho")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=519193382]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=519193382]
 position = Vector2(0.5, 2)
 shape = SubResource("CapsuleShape2D_6skho")
 
+[node name="hand" type="Node2D" parent="." unique_id=2061931338]
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1968293382]
+scale = Vector2(2, 2)
