@@ -19,3 +19,7 @@ shape = SubResource("RectangleShape2D_6skho")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=639739864]
 texture = ExtResource("2_0xm2m")
+
+[node name="player2" parent="." unique_id=2066494574 instance=ExtResource("1_ig7tw")]
+position = Vector2(704, 190)
+client_player = false

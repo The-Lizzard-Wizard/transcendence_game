@@ -1,14 +1,18 @@
 extends Node2D
 
 @export var speed : float = 300
+@export var healt : int = 100
+
+@export var client_player : bool = true
+
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if (client_player == false):
+		$Camera2D.enabled = false
 
-
-func _process(delta):
+func client_proc(delta):
 	var vel = Vector2.ZERO
 	look_at(get_global_mouse_position())
 	#rotation = rotation
@@ -77,3 +81,12 @@ func _process(delta):
 		vel = vel.normalized() * speed
 		
 	position += vel * delta
+	
+func not_client_proc(delta):
+	pass
+
+func _process(delta):
+	if client_player == true:
+		client_proc(delta)
+	else:
+		not_client_proc(delta)
