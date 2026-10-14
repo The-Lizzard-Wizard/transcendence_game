@@ -35,7 +35,7 @@ curve = SubResource("Curve_vt8gq")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6skho"]
 particle_flag_disable_z = true
 emission_shape = 3
-emission_box_extents = Vector3(0.2, 0, 1)
+emission_box_extents = Vector3(50, 0, 0)
 angular_velocity_min = -275.94
 angular_velocity_max = -178.08002
 gravity = Vector3(0, 0, 0)

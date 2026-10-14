@@ -66,6 +66,9 @@ func _process(delta):
 		
 		var part: GPUParticles2D = ray.get_node("GPUParticles2D")
 		part.look_at(get_global_mouse_position())
+		#part.position = posC
+		#var mat : ParticleProcessMaterial = part.process_material
+		#mat.emission_box_extents.z = shoot_ins.range
 
 		get_tree().current_scene.add_child(shoot_ins)
 		

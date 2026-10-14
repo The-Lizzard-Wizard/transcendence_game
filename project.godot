@@ -62,6 +62,12 @@ move={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="client_player"
+2d_physics/layer_3="not_client_player"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
