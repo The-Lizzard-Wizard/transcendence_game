@@ -13,6 +13,9 @@ func _process(delta):
 	look_at(get_global_mouse_position())
 	#rotation = rotation
 	
+	#======================================================================================
+	#CAMERA
+	#======================================================================================
 	var posA = position
 	var posB = get_global_mouse_position()
 	
@@ -20,8 +23,21 @@ func _process(delta):
 	posC.x = (posA.x + posB.x) / 2
 	posC.y = (posA.y + posB.y) / 2
 	
-	$Camera2D.global_position = posC
+	var max_rad : float = 500
+	var dist = sqrt(pow(posB.x - posA.x,2) + pow(posB.y - posA.y, 2))
+	var distC = sqrt(pow(posC.x - posA.x,2) + pow(posC.y - posA.y, 2))
+	if (distC > max_rad):
+		var posD = Vector2.ZERO
+		posD.x = posA.x + max_rad / dist * (posB.x - posA.x)
+		posD.y = posA.y + max_rad / dist * (posB.y - posA.y)
+		$Camera2D.global_position = posD
+	else:
+		$Camera2D.global_position = posC
 	
+	#======================================================================================
+	#CONTROL
+	#======================================================================================
+	#MOVEMENT
 	if not Input.is_action_pressed("move"):
 		$CharacterBody2D/AnimatedSprite2D.play("idle")
 	if Input.is_action_pressed("up"):
@@ -38,6 +54,7 @@ func _process(delta):
 		$CharacterBody2D/AnimatedSprite2D.play("walk")
 
 
+	#SHOOT
 	if Input.is_action_just_pressed("shoot"):
 		print("shoot")
 		var shoot = load("res://scene/item/ray_bullet.tscn")
