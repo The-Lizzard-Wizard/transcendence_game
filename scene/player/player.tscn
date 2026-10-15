@@ -45,7 +45,8 @@ animation = &"idle"
 position = Vector2(0.5, 2)
 shape = SubResource("CapsuleShape2D_6skho")
 
-[node name="hand" type="Node2D" parent="." unique_id=2061931338]
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1968293382]
 scale = Vector2(2, 2)
+
+[node name="hand" type="Marker2D" parent="." unique_id=512112398]
+position = Vector2(7, 19.5)

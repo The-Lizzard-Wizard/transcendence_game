@@ -1,4 +1,4 @@
-extends Node2D
+extends CharacterBody2D
 
 @export var speed : float = 300
 @export var healt : int = 100
@@ -37,9 +37,10 @@ func client_physic_proc(delta):
 		$AnimatedSprite2D.play("walk")
 	
 	if vel.length() > 0:
-		vel = vel.normalized() * speed
-		
-	position += vel * delta
+		vel = vel.normalized()
+	
+	velocity = (vel * speed)
+	move_and_slide()
 
 
 func client_proc(delta):
