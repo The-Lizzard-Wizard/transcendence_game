@@ -17,7 +17,7 @@ func client_physic_proc(delta):
 	
 	var vel = Vector2.ZERO
 	look_at(get_global_mouse_position())
-	
+	#$AnimatedSprite2D.look_at(get_global_mouse_position())
 	#======================================================================================
 	#MOVEMENT
 	#======================================================================================
@@ -49,7 +49,8 @@ func client_proc(delta):
 	#======================================================================================
 	var posA = position
 	var posB = get_global_mouse_position()
-	
+	if not Input.is_action_pressed("look"):
+		posB = position
 	var posC = Vector2.ZERO
 	posC.x = (posA.x + posB.x) / 2
 	posC.y = (posA.y + posB.y) / 2

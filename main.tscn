@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://qu7mul8g7y0l"]
 
+[ext_resource type="PackedScene" uid="uid://bleo3g4i2i2ij" path="res://scene/map/map.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bdhf3giuh3ys0" path="res://scene/player/player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://dk3lsxd27bpdo" path="res://icon.svg" id="2_0xm2m"]
 
@@ -7,6 +8,10 @@
 size = Vector2(139, 134)
 
 [node name="main" type="Node" unique_id=2013266672]
+
+[node name="map" parent="." unique_id=1974774773 instance=ExtResource("1_h2yge")]
+position = Vector2(704, 190)
+scale = Vector2(2, 2)
 
 [node name="player" parent="." unique_id=1765459457 instance=ExtResource("1_ig7tw")]
 position = Vector2(193, 127)
