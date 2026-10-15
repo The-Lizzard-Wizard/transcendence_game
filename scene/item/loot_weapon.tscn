@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cm5yd1svl3nhq"]
+
+[ext_resource type="Script" uid="uid://bw673tfpkq5oe" path="res://scene/item/loot_weapon.gd" id="1_3w4uo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6skho"]
+
+[node name="loot_weapon" type="Node2D" unique_id=1387197605]
+scale = Vector2(2, 2)
+script = ExtResource("1_3w4uo")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1684534147]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=647384477]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_6skho")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1788548667]

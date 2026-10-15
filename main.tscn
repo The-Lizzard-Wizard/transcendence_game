@@ -3,15 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://bleo3g4i2i2ij" path="res://scene/map/map.tscn" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bdhf3giuh3ys0" path="res://scene/player/player.tscn" id="1_ig7tw"]
 [ext_resource type="Texture2D" uid="uid://dk3lsxd27bpdo" path="res://icon.svg" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://cm5yd1svl3nhq" path="res://scene/item/loot_weapon.tscn" id="2_1bvp3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6skho"]
 size = Vector2(139, 134)
 
 [node name="main" type="Node" unique_id=2013266672]
-
-[node name="map" parent="." unique_id=1974774773 instance=ExtResource("1_h2yge")]
-position = Vector2(-508, -168)
-scale = Vector2(2, 2)
 
 [node name="player" parent="." unique_id=1765459457 instance=ExtResource("1_ig7tw")]
 position = Vector2(193, 127)
@@ -29,3 +26,14 @@ texture = ExtResource("2_0xm2m")
 [node name="player2" parent="." unique_id=2066494574 instance=ExtResource("1_ig7tw")]
 position = Vector2(704, 190)
 client_player = false
+
+[node name="map" parent="." unique_id=1974774773 instance=ExtResource("1_h2yge")]
+position = Vector2(-508, -168)
+scale = Vector2(2, 2)
+
+[node name="loot_weapon" parent="." unique_id=1387197605 instance=ExtResource("2_1bvp3")]
+position = Vector2(334, 107)
+
+[node name="loot_weapon2" parent="." unique_id=879042250 instance=ExtResource("2_1bvp3")]
+position = Vector2(460, 12)
+weapon_id = 0

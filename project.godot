@@ -18,6 +18,7 @@ config/icon="uid://iqmyals4g0lj"
 [autoload]
 
 GlobalEvent="*uid://dabpxqi0asdsl"
+WeaponData="*uid://b3f0daayusfui"
 
 [display]
 

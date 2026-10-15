@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed : float = 300
 @export var healt : int = 100
-@export var weapon : PackedScene
+@export var weapon : int #weapon id
 
 @export var client_player : bool = true
 
@@ -10,6 +10,7 @@ extends CharacterBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	print(WeaponData.weapon_data[1][0])
 	if (client_player == false):
 		$Camera2D.enabled = false
 
@@ -17,7 +18,7 @@ func client_physic_proc(delta):
 	
 	var vel = Vector2.ZERO
 	look_at(get_global_mouse_position())
-	#$AnimatedSprite2D.look_at(get_global_mouse_position())
+
 	#======================================================================================
 	#MOVEMENT
 	#======================================================================================
@@ -48,10 +49,8 @@ func client_proc(delta):
 	#======================================================================================
 	#CAMERA
 	#======================================================================================
-	var posA = position
+	var posA = global_position
 	var posB = get_global_mouse_position()
-	if not Input.is_action_pressed("look"):
-		posB = position
 	var posC = Vector2.ZERO
 	posC.x = (posA.x + posB.x) / 2
 	posC.y = (posA.y + posB.y) / 2
@@ -66,7 +65,6 @@ func client_proc(delta):
 		$Camera2D.global_position = posD
 	else:
 		$Camera2D.global_position = posC
-
 
 	#======================================================================================
 	#ACTION
