@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var speed : float = 300
 @export var healt : int = 100
-@export var weapon : int #weapon id
+@export var weapon : int = -1 #weapon id
 
 @export var client_player : bool = true
 
@@ -11,10 +11,12 @@ extends CharacterBody2D
 #=======================================================================
 var in_loot_zone = false
 var loot_zone_id = 0
+var loot_id = 0 #incetance id of the entered loot zone
 
-func player_enter_loot_zone(w_id : int):
+func player_enter_loot_zone(w_id : int, id : int):
 	in_loot_zone = true
 	loot_zone_id = w_id
+	loot_id = id
 
 func player_exit_loot_zone():
 	in_loot_zone = false
@@ -23,11 +25,26 @@ func interact_with_loot():
 	if (in_loot_zone == true):
 		if (Input.is_action_just_pressed("loot")):
 			in_loot_zone = false
+			
+			drop_weapon()
 			equip_weapon(loot_zone_id)
+			
+			var loot_ins = instance_from_id(loot_id)
+			loot_ins.free()
 
 func equip_weapon(id : int):
 	weapon = id
 	$hand/Sprite2D.texture = load(WeaponData.weapon_data[weapon][3])
+
+func drop_weapon():
+	if (weapon != -1):
+		var droped_weapon = load("res://scene/item/loot_weapon.tscn")
+		var droped_weapon_ins = droped_weapon.instantiate()
+		droped_weapon_ins.weapon_id = weapon
+		droped_weapon_ins.position = position
+		get_tree().current_scene.add_child(droped_weapon_ins)
+		weapon = -1
+		$hand/Sprite2D.texture = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -106,6 +123,9 @@ func client_proc(delta):
 		part.look_at(get_global_mouse_position())
 
 		get_tree().current_scene.add_child(shoot_ins)
+	
+	if (Input.is_action_just_pressed("drop_weapon")):
+		drop_weapon()
 	
 func not_client_proc(delta):
 	pass
