@@ -1,13 +1,13 @@
-extends Node2D
+extends Area2D
 
 @export var weapon_id : int = 1
 
+func _on_body_entered(body: Node2D) -> void:
+	GlobalEvent.enter_loot_zone.emit(weapon_id)
 
-# Called when the node enters the scene tree for the first time.
+
+func _on_body_exited(body: Node2D) -> void:
+	GlobalEvent.exit_loot_zone.emit()
+
 func _ready() -> void:
-	$Area2D/Sprite2D.texture = load(WeaponData.weapon_data[weapon_id][3])
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	$Sprite2D.texture = load(WeaponData.weapon_data[weapon_id][3])

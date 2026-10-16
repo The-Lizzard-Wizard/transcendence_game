@@ -6,11 +6,33 @@ extends CharacterBody2D
 
 @export var client_player : bool = true
 
+#=======================================================================
+#weapon loot
+#=======================================================================
+var in_loot_zone = false
+var loot_zone_id = 0
 
+func player_enter_loot_zone(w_id : int):
+	in_loot_zone = true
+	loot_zone_id = w_id
+
+func player_exit_loot_zone():
+	in_loot_zone = false
+
+func interact_with_loot():
+	if (in_loot_zone == true):
+		if (Input.is_action_just_pressed("loot")):
+			in_loot_zone = false
+			equip_weapon(loot_zone_id)
+
+func equip_weapon(id : int):
+	weapon = id
+	$hand/Sprite2D.texture = load(WeaponData.weapon_data[weapon][3])
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(WeaponData.weapon_data[1][0])
+	GlobalEvent.enter_loot_zone.connect(player_enter_loot_zone)
+	GlobalEvent.exit_loot_zone.connect(player_exit_loot_zone)
 	if (client_player == false):
 		$Camera2D.enabled = false
 
@@ -45,6 +67,8 @@ func client_physic_proc(delta):
 
 
 func client_proc(delta):
+	
+	interact_with_loot()
 	
 	#======================================================================================
 	#CAMERA

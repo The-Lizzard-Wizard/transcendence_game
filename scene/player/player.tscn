@@ -5,10 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://xrklgq7m20qe" path="res://assets/img/wizard_f1.png" id="3_5lop3"]
 [ext_resource type="Texture2D" uid="uid://ckkd015rocuaq" path="res://assets/img/wizard_f2.png" id="4_ajqqa"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6skho"]
-radius = 17.5
-height = 37.0
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_6skho"]
 animations = [{
 "frames": [{
@@ -31,14 +27,14 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6skho"]
+radius = 17.5
+height = 37.0
+
 [node name="player" type="CharacterBody2D" unique_id=275882780]
 scale = Vector2(2, 2)
 disable_mode = 2
 script = ExtResource("1_cm2cf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=519193382]
-position = Vector2(0.5, 2)
-shape = SubResource("CapsuleShape2D_6skho")
 
 [node name="hand" type="Marker2D" parent="." unique_id=512112398]
 position = Vector2(6, 17.5)
@@ -53,3 +49,7 @@ animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1968293382]
 scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=519193382]
+position = Vector2(0.5, 2)
+shape = SubResource("CapsuleShape2D_6skho")

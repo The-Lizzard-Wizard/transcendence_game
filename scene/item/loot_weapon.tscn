@@ -4,14 +4,18 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6skho"]
 
-[node name="loot_weapon" type="Node2D" unique_id=1387197605]
+[node name="weapon_loot" type="Area2D" unique_id=1684534147]
 scale = Vector2(2, 2)
 script = ExtResource("1_3w4uo")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1684534147]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=647384477]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=647384477]
 scale = Vector2(3, 3)
 shape = SubResource("CircleShape2D_6skho")
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D" unique_id=1788548667]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1788548667]
+
+[node name="loot_weapon" type="Node2D" parent="." unique_id=1387197605]
+scale = Vector2(2, 2)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

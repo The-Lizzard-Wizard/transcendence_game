@@ -6,7 +6,7 @@ extends Node
 #==============================================================
 var weapon_data = [
 	["staff", 50, 30, "res://assets/img/blue_staff.png"],
-	["wand", 150, 15,"res://assets/img/yellow.png" ]
+	["wand", 150, 15,"res://assets/img/wand.png" ]
 ]
 
 func _ready() -> void:
