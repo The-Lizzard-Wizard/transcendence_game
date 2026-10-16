@@ -71,6 +71,8 @@ animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1968293382]
 scale = Vector2(2, 2)
+position_smoothing_enabled = true
+position_smoothing_speed = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=519193382]
 position = Vector2(0.5, 2)
