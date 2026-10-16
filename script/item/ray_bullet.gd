@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var w_range : float = 500
+@export var w_range : int = 500
 var ray2D : RayCast2D
 
 # Called when the node enters the scene tree for the first time.

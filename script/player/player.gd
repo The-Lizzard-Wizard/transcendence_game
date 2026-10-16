@@ -32,6 +32,9 @@ func interact_with_loot():
 			var loot_ins = instance_from_id(loot_id)
 			loot_ins.free()
 
+#============================================================================
+#weapon management
+#============================================================================
 func equip_weapon(id : int):
 	weapon = id
 	$hand/Sprite2D.texture = load(WeaponData.weapon_data[weapon][3])
@@ -46,13 +49,33 @@ func drop_weapon():
 		weapon = -1
 		$hand/Sprite2D.texture = null
 
+func use_weapon():
+	if (weapon != -1):
+		var shoot = load("res://scene/item/ray_bullet.tscn")
+		var shoot_ins : Node2D = shoot.instantiate()
+		shoot_ins.position = position
+		shoot_ins.w_range = WeaponData.weapon_data[weapon][1]
+		var ray: RayCast2D = shoot_ins.get_node("RayCast2D")
+		var dir = (get_global_mouse_position() - ray.global_position).normalized()
+		ray.target_position = ray.to_local(ray.global_position + dir * shoot_ins.w_range)
+		
+		var part: GPUParticles2D = ray.get_node("GPUParticles2D")
+		part.look_at(get_global_mouse_position())
+
+		get_tree().current_scene.add_child(shoot_ins)
+
+#===========================================================================
 # Called when the node enters the scene tree for the first time.
+#===========================================================================
 func _ready() -> void:
 	GlobalEvent.enter_loot_zone.connect(player_enter_loot_zone)
 	GlobalEvent.exit_loot_zone.connect(player_exit_loot_zone)
 	if (client_player == false):
 		$Camera2D.enabled = false
 
+#===========================================================================
+#player physic proc
+#===========================================================================
 func client_physic_proc(delta):
 	
 	var vel = Vector2.ZERO
@@ -85,8 +108,6 @@ func client_physic_proc(delta):
 
 func client_proc(delta):
 	
-	interact_with_loot()
-	
 	#======================================================================================
 	#CAMERA
 	#======================================================================================
@@ -111,21 +132,12 @@ func client_proc(delta):
 	#ACTION
 	#======================================================================================
 	if Input.is_action_just_pressed("shoot"):
-		print("shoot")
-		var shoot = load("res://scene/item/ray_bullet.tscn")
-		var shoot_ins : Node2D = shoot.instantiate()
-		shoot_ins.position = position
-		var ray: RayCast2D = shoot_ins.get_node("RayCast2D")
-		var dir = (get_global_mouse_position() - ray.global_position).normalized()
-		ray.target_position = ray.to_local(ray.global_position + dir * shoot_ins.w_range)
-		
-		var part: GPUParticles2D = ray.get_node("GPUParticles2D")
-		part.look_at(get_global_mouse_position())
-
-		get_tree().current_scene.add_child(shoot_ins)
+		use_weapon()
 	
 	if (Input.is_action_just_pressed("drop_weapon")):
 		drop_weapon()
+	
+	interact_with_loot()
 	
 func not_client_proc(delta):
 	pass
