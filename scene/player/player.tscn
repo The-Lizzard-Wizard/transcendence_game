@@ -7,6 +7,9 @@
 [ext_resource type="Texture2D" uid="uid://ckkd015rocuaq" path="res://assets/img/wizard_f2.png" id="4_ajqqa"]
 [ext_resource type="Texture2D" uid="uid://dl7dtrp6ts20v" path="res://assets/img/saruman_walk_1.png" id="4_hfhxk"]
 [ext_resource type="Texture2D" uid="uid://c0glcwu37elul" path="res://assets/img/saruman_walk_2.png" id="5_pisg7"]
+[ext_resource type="Texture2D" uid="uid://bcihvvby2amxw" path="res://assets/img/heathbar-1.png" id="8_oypl4"]
+[ext_resource type="Texture2D" uid="uid://cmqi0xnubjtp1" path="res://assets/img/heathbar-2.png" id="9_pisg7"]
+[ext_resource type="FontFile" uid="uid://btrepff1y83ma" path="res://assets/font/KiwiSoda.ttf" id="10_oypl4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6skho"]
 animations = [{
@@ -53,6 +56,16 @@ animations = [{
 radius = 17.5
 height = 37.0
 
+[sub_resource type="Gradient" id="Gradient_pqh06"]
+colors = PackedColorArray(0.6627451, 0.043137256, 0.18039216, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2m5q5"]
+gradient = SubResource("Gradient_pqh06")
+
+[sub_resource type="LabelSettings" id="LabelSettings_pisg7"]
+font = ExtResource("10_oypl4")
+font_size = 48
+
 [node name="player" type="CharacterBody2D" unique_id=275882780]
 scale = Vector2(2, 2)
 disable_mode = 2
@@ -67,7 +80,7 @@ rotation = 1.5707964
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=607882729]
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_6skho")
-animation = &"idle"
+animation = &"walk"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1968293382]
 scale = Vector2(2, 2)
@@ -77,3 +90,39 @@ position_smoothing_speed = 2.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=519193382]
 position = Vector2(0.5, 2)
 shape = SubResource("CapsuleShape2D_6skho")
+
+[node name="healthbar" type="Sprite2D" parent="." unique_id=350387648]
+z_index = 2
+position = Vector2(0, -64)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("8_oypl4")
+region_filter_clip_enabled = true
+
+[node name="Timer" type="Timer" parent="healthbar" unique_id=1691283816]
+
+[node name="Sprite2D2" type="Sprite2D" parent="healthbar" unique_id=210260093]
+z_index = 1
+z_as_relative = false
+position = Vector2(186, -58)
+scale = Vector2(0.6171875, 115.999985)
+texture = SubResource("GradientTexture1D_2m5q5")
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="healthbar" unique_id=1492550222]
+z_index = 1
+z_as_relative = false
+position = Vector2(-192, -64)
+texture = ExtResource("9_pisg7")
+centered = false
+
+[node name="Label" type="Label" parent="healthbar" unique_id=919215346]
+offset_left = 194.0
+offset_top = -58.0
+offset_right = 348.0
+offset_bottom = 60.0
+text = "100%"
+label_settings = SubResource("LabelSettings_pisg7")
+vertical_alignment = 1
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="timeout" from="healthbar/Timer" to="." method="_on_timer_timeout"]

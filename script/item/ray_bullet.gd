@@ -18,5 +18,7 @@ func _process(delta: float) -> void:
 			var mark = load("res://scene/item/hit_marker.tscn")
 			var mark_ins : Node2D = mark.instantiate()
 			mark_ins.global_position = ray2D.get_collision_point()
+			if ("CharacterBody2D" == ray2D.get_collider().get_class()):
+				ray2D.get_collider().get_hit(5)
 			get_tree().current_scene.add_child(mark_ins)
 	free()

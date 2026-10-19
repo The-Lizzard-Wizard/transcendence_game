@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed : float = 300
-@export var healt : int = 100
+@export var healt : float = 100
 @export var weapon : int = -1 #weapon id
 
 @export var client_player : bool = true
@@ -12,6 +12,7 @@ extends CharacterBody2D
 var in_loot_zone = false
 var loot_zone_id = 0
 var loot_id = 0 #incetance id of the entered loot zone
+var health_to_remove = 0
 
 func player_enter_loot_zone(w_id : int, id : int):
 	in_loot_zone = true
@@ -136,7 +137,6 @@ func client_proc(delta):
 	
 	if (Input.is_action_just_pressed("drop_weapon")):
 		drop_weapon()
-	
 	interact_with_loot()
 	
 func not_client_proc(delta):
@@ -151,3 +151,25 @@ func _process(delta: float):
 		client_proc(delta)
 	else:
 		not_client_proc(delta)
+	
+	$healthbar.global_rotation = 0
+	$healthbar.global_position = position + Vector2(0, -92)
+	$healthbar/Sprite2D2.scale.x = $healthbar/Timer.time_left * health_to_remove / 100
+	health_to_remove *= $healthbar/Timer.time_left
+
+func get_hit(dmg: int):
+	$healthbar.show()
+	if (healt > 0):
+		health_to_remove += dmg
+	healt -= dmg
+	if (healt <= 0):
+		healt = 0 
+	$healthbar/Sprite2D.scale.x = healt / 100
+	$healthbar/Sprite2D2.position.x = -192 + (healt * 192 * 2)/100
+	$healthbar/Label.text = type_convert(type_convert(healt, TYPE_INT), TYPE_STRING) + "%"
+	$healthbar/Timer.start()
+
+
+func _on_timer_timeout() -> void:
+	$healthbar.hide()
+	$healthbar/Timer.stop()
