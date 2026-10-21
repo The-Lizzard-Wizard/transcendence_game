@@ -56,6 +56,7 @@ func use_weapon():
 		var shoot_ins : Node2D = shoot.instantiate()
 		shoot_ins.position = position
 		shoot_ins.w_range = WeaponData.weapon_data[weapon][1]
+		shoot_ins.w_damage = WeaponData.weapon_data[weapon][2]
 		var ray: RayCast2D = shoot_ins.get_node("RayCast2D")
 		var dir = (get_global_mouse_position() - ray.global_position).normalized()
 		ray.target_position = ray.to_local(ray.global_position + dir * shoot_ins.w_range)
