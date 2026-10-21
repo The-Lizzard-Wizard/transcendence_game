@@ -1,11 +1,20 @@
 [gd_scene format=3 uid="uid://cv4c6hgqb8j3h"]
 
+[ext_resource type="Script" uid="uid://cg3kwtep3kqj5" path="res://scene/item/hit_marker.gd" id="1_f6h63"]
 [ext_resource type="Texture2D" uid="uid://duvabgakifpvx" path="res://assets/img/cross.png" id="1_wp4e3"]
 
 [node name="HitMarker" type="Node2D" unique_id=1501760256]
+script = ExtResource("1_f6h63")
 
 [node name="Marker2D" type="Marker2D" parent="." unique_id=878928946]
 
 [node name="Sprite2D" type="Sprite2D" parent="Marker2D" unique_id=312904705]
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_wp4e3")
+
+[node name="Timer" type="Timer" parent="." unique_id=2109049751]
+wait_time = 2.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

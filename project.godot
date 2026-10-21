@@ -26,6 +26,7 @@ window/size/viewport_width=1600
 window/size/viewport_height=1200
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+mouse_cursor/custom_image="uid://wapyfaem0ia8"
 
 [input]
 
