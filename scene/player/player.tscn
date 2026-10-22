@@ -11,6 +11,16 @@
 [ext_resource type="Texture2D" uid="uid://cmqi0xnubjtp1" path="res://assets/img/heathbar-2.png" id="9_pisg7"]
 [ext_resource type="FontFile" uid="uid://btrepff1y83ma" path="res://assets/font/KiwiSoda.ttf" id="10_oypl4"]
 
+[sub_resource type="Gradient" id="Gradient_oypl4"]
+offsets = PackedFloat32Array(0, 0.49874055, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6skho"]
+gradient = SubResource("Gradient_oypl4")
+fill = 1
+fill_from = Vector2(0.52421653, 0.4985755)
+fill_to = Vector2(1, 0.7236467)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_6skho"]
 animations = [{
 "frames": [{
@@ -71,6 +81,11 @@ scale = Vector2(2, 2)
 disable_mode = 2
 script = ExtResource("1_cm2cf")
 
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1202083955]
+energy = 0.34
+texture = SubResource("GradientTexture2D_6skho")
+texture_scale = 1.92
+
 [node name="hand" type="Marker2D" parent="." unique_id=512112398]
 position = Vector2(6, 17.5)
 
@@ -78,6 +93,7 @@ position = Vector2(6, 17.5)
 rotation = 1.5707964
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=607882729]
+light_mask = 2
 rotation = 1.5707964
 sprite_frames = SubResource("SpriteFrames_6skho")
 animation = &"walk"

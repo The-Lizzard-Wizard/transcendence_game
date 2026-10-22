@@ -17,5 +17,9 @@ shape = SubResource("CircleShape2D_6skho")
 [node name="loot_weapon" type="Node2D" parent="." unique_id=1387197605]
 scale = Vector2(2, 2)
 
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=25175996]
+enabled = false
+energy = 3.75
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

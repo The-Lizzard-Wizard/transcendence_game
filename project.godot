@@ -19,6 +19,7 @@ config/icon="uid://iqmyals4g0lj"
 
 GlobalEvent="*uid://dabpxqi0asdsl"
 WeaponData="*uid://b3f0daayusfui"
+ReactBridge="*uid://dk5p2mxhsbocw"
 
 [display]
 
@@ -27,6 +28,7 @@ window/size/viewport_height=1200
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 mouse_cursor/custom_image="uid://wapyfaem0ia8"
+mouse_cursor/custom_image_hotspot=Vector2(32, 32)
 
 [input]
 

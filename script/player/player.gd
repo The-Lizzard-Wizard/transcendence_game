@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var weapon : int = -1 #weapon id
 
 @export var client_player : bool = true
+@export var bot : bool = false
 
 #=======================================================================
 #weapon loot
@@ -139,6 +140,9 @@ func client_proc(delta):
 	if (Input.is_action_just_pressed("drop_weapon")):
 		drop_weapon()
 	interact_with_loot()
+
+func bot_proc(delta: float):
+	pass
 	
 func not_client_proc(delta):
 	pass
@@ -148,10 +152,13 @@ func _physics_process(delta: float) -> void:
 		client_physic_proc(delta)
 
 func _process(delta: float):
-	if client_player == true:
-		client_proc(delta)
+	if bot == true:
+		bot_proc(delta)
 	else:
-		not_client_proc(delta)
+		if client_player == true:
+			client_proc(delta)
+		else:
+			not_client_proc(delta)
 	
 	$healthbar.global_rotation = 0
 	$healthbar.global_position = position + Vector2(0, -92)

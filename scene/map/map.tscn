@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bleo3g4i2i2ij"]
 
 [ext_resource type="Texture2D" uid="uid://df63yccpyljwq" path="res://assets/img/wall-1.png" id="1_yyonm"]
-[ext_resource type="Texture2D" uid="uid://bptpww2fassvf" path="res://assets/img/ground-3.png" id="2_yyonm"]
+[ext_resource type="Texture2D" uid="uid://hufy03l6fy61" path="res://assets/img/ground-2.png" id="2_yyonm"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_yyonm"]
 tile_data = PackedInt32Array(0, 196609, 3, 65537, 196609, 3)
