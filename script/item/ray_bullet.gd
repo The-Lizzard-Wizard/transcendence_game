@@ -19,7 +19,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	
 	if (ray2D.is_colliding()):
-			print("hit")
 			var mark = load("res://scene/item/hit_marker.tscn")
 			var mark_ins : Node2D = mark.instantiate()
 			mark_ins.global_position = ray2D.get_collision_point()

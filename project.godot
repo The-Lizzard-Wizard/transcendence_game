@@ -20,6 +20,7 @@ config/icon="uid://iqmyals4g0lj"
 GlobalEvent="*uid://dabpxqi0asdsl"
 WeaponData="*uid://b3f0daayusfui"
 ReactBridge="*uid://dk5p2mxhsbocw"
+Network="*uid://d0a8vetya33rm"
 
 [display]
 

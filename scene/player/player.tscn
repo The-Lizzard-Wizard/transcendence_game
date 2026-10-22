@@ -80,6 +80,12 @@ font_size = 48
 scale = Vector2(2, 2)
 disable_mode = 2
 script = ExtResource("1_cm2cf")
+speed = null
+healt = null
+weapon = null
+client_player = null
+bot = null
+player_id = null
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1202083955]
 energy = 0.34

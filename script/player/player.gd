@@ -6,6 +6,7 @@ extends CharacterBody2D
 
 @export var client_player : bool = true
 @export var bot : bool = false
+@export var player_id: int = 0
 
 #=======================================================================
 #weapon loot
@@ -75,6 +76,8 @@ func _ready() -> void:
 	GlobalEvent.exit_loot_zone.connect(player_exit_loot_zone)
 	if (client_player == false):
 		$Camera2D.enabled = false
+	else:
+		player_id = Network.socket.
 
 #===========================================================================
 #player physic proc
@@ -142,7 +145,7 @@ func client_proc(delta):
 	interact_with_loot()
 
 func bot_proc(delta: float):
-	pass
+	use_weapon()
 	
 func not_client_proc(delta):
 	pass
@@ -176,6 +179,13 @@ func get_hit(dmg: int):
 	$healthbar/Sprite2D2.position.x = -192 + (healt * 192 * 2)/100
 	$healthbar/Label.text = type_convert(type_convert(healt, TYPE_INT), TYPE_STRING) + "%"
 	$healthbar/Timer.start()
+	Network.socket.send_text(JSON.stringify(
+		{
+			"type": "player_get_hit",
+			"id": "player_id",
+			"healt": healt
+		}
+		))
 
 
 func _on_timer_timeout() -> void:
