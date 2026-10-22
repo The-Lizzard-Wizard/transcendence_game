@@ -77,7 +77,8 @@ func _ready() -> void:
 	if (client_player == false):
 		$Camera2D.enabled = false
 	else:
-		player_id = Network.socket.
+		pass
+		#player_id = Network.socket.
 
 #===========================================================================
 #player physic proc
